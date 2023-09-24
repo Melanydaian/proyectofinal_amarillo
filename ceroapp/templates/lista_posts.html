@@ -1,0 +1,21 @@
+{% extends 'padre.html' %}
+</style>
+
+{% block contenidoQueCambia %}
+
+
+    <div class="container">
+
+        <div class="lista_empleado">
+           
+            <h4>Empleados</h4>
+        </div>
+        <ul class="list-group">
+            {% for post in lista_posts %}
+            <li class="list-group-item">
+                {{post.titulo}} 
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock contenidoQueCambia %}

@@ -1,0 +1,39 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block title %}{{ publicacion.titulo }}{% endblock %}
+
+{% block content %}
+    <!-- Imagen de la Publicación -->
+    <div class="container">
+        <img src="{{ publicacion.imagen.url }}" alt="{{ publicacion.titulo }}" class="img-fluid">
+    </div>
+
+    <!-- Título y subtítulo de la Publicación -->
+    <div class="container mt-5">
+        <div class="row justify-content-left">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h1>{{ publicacion.titulo }}</h1>
+                <h2>{{ publicacion.subtitulo }}</h2>
+               
+
+                <!-- Contenido de la Publicación -->
+                <p>{{ publicacion.copy }}</p>
+                
+                {% if publicacion.tipo == 'receta' %}
+                    <h3>Ingredientes:</h3>
+                    <ul>
+                        {% for ingrediente in publicacion.get_ingredientes_lista %}
+                            <li>{{ ingrediente }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <span class="meta">
+                    Posteado por {{ publicacion.autor }}
+                    el día {{ publicacion.fecha_creacion }}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

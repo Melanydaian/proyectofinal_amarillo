@@ -1,0 +1,23 @@
+{% extends 'padre.html' %}
+
+{% block contenidoQueCambia %}
+
+<div class="container">
+    <h4>Recetas</h4>
+    <div class="row">
+        {% for receta in listaRecetas %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ receta.imagen.url }}" class="card-img-top" alt="{{ receta.nombre }}">
+                <div class="card-body">
+                    <h2 class="card-title">{{ receta.nombre }}</h2>
+                    <p class="card-text">{{ receta.intro }}</p>
+                    <a href="{% url 'detalle_receta' receta.id %}" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock contenidoQueCambia %}
