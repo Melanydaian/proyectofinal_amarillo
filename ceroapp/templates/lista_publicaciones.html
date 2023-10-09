@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Publicaciones</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Lista de Publicaciones</h2>
+            </div>
+            <div class="col-md-4 text-right">
+                <a href="{% url 'publicar_form' %}" class="btn btn-success">Publicar</a>
+                <a href="{% url 'inicio' %}" class="btn btn-success">Volver</a>
+            </div>
+        </div>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for publicacion in publicaciones %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'publicacion' publicacion.pk %}">
+                                <u>{{ publicacion.titulo }}</u>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'editar_publicacion' publicacion.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="{% url 'eliminar_publicacion' publicacion.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">No hay publicaciones disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="pagination justify-content-center">
+                    {% if publicaciones.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">Primera</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ publicaciones.previous_page_number }}">Anterior</a>
+                        </li>
+                    {% endif %}
+                
+                    {% for i in page_obj.paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                
+                    {% if publicaciones.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ publicaciones.next_page_number }}">Siguiente</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ publicaciones.paginator.num_pages }}">Última</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

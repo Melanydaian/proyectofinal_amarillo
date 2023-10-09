@@ -1,0 +1,17 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Resultados de la búsqueda para "{{ query }}"</h2>
+
+    {% if resultados %}
+        <ul>
+            {% for resultado in resultados %}
+                <li><a href="{% url 'publicacion' resultado.id %}">{{ resultado.titulo }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados para "{{ query }}".</p>
+    {% endif %}
+</div>
+{% endblock %}

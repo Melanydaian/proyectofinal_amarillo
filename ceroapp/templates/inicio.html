@@ -1,0 +1,35 @@
+{% extends 'padre.html' %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <ul>
+                {% for publicacion in lista_de_publicaciones %}
+                    <li>
+                        <a href="{% url 'publicacion' publicacion.id %}">
+                            <h2>{{ publicacion.titulo }}</h2>
+                            <h5 class="subheading">{{ publicacion.subtitulo }}</h5>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            {% block content %}
+            {% if mensaje %}
+            <div class="alert alert-info">
+                {{ mensaje }}
+            </div>
+            {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}

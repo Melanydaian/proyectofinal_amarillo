@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">Registrarse</h2>
+                        <form method="post">
+                            {% csrf_token %}
+        
+                            <div class="form-group">
+                                <label for="{{ miFormulario.first_name.id_for_label }}">Nombre:</label>
+                                <input type="text" class="form-control" id="{{ miFormulario.first_name.id_for_label }}" name="{{ miFormulario.first_name.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ miFormulario.last_name.id_for_label }}">Apellido:</label>
+                                <input type="text" class="form-control" id="{{ miFormulario.last_name.id_for_label }}" name="{{ miFormulario.last_name.name }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="{{ miFormulario.username.id_for_label }}">Nombre de Usuario:</label>
+                                <input type="text" class="form-control" id="{{ miFormulario.username.id_for_label }}" name="{{ miFormulario.username.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ miFormulario.password1.id_for_label }}">Contraseña:</label>
+                                <input type="password" class="form-control" id="{{ miFormulario.password1.id_for_label }}" name="{{ miFormulario.password1.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ miFormulario.password2.id_for_label }}">Repita Contraseña:</label>
+                                <input type="password" class="form-control" id="{{ miFormulario.password2.id_for_label }}" name="{{ miFormulario.password2.name }}">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    </div>
+</body>
+</html>

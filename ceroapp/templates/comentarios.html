@@ -1,0 +1,19 @@
+{% extends 'padre.html' %} 
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h3>Deja un comentario</h3>
+            <form method="post" action="{% url 'agregar_comentario' publicacion_id=publicacion.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ comentario_form.texto.id_for_label }}">Comentario:</label>
+                    {{ comentario_form.texto }}
+                </div>
+                <button type="submit" class="btn btn-success">Publicar comentario</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

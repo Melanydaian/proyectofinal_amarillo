@@ -1,0 +1,16 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center">Editar Perfil</h2>
+            <form action="{% url 'Editar_perfil' %}" method="post" class="mt-4">
+                {% csrf_token %}
+                {{ miFomulario.as_p }}
+                <button type="submit" class="btn btn-primary">Actualizar perfil</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
